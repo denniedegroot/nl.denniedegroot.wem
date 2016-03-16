@@ -1,0 +1,17 @@
+{
+    "pair": {
+        "title": "Selecteer de apparaten die je wilt toevoegen"
+    },
+    "settings": {
+        "title": "Wireless Energy Monitor instellingen",
+        "intro": "Voordat je apparaat instellingen kunt aanpassen moet je een WEM device toevoegen. Volg de handleiding voor instructies.",
+        "header": "WEM instellingen",
+        "meters": {
+            "header": "Pair P1 to pulse meters",
+            "intro": "",
+            "p1meter": "P1 meter",
+            "pulsemeter": "Pulse meter",
+            "save": "Instellingen opslaan"
+        }
+    }
+}

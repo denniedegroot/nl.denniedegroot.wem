@@ -1,0 +1,235 @@
+{
+    "id": "nl.denniedegroot.wem",
+    "version": "1.0.0",
+    "compatibility": "0.x || 1.x",
+    "category": "appliances",
+    "name": {
+        "en": "Wireless Energy Monitor",
+        "nl": "Draadloze Energie Monitor"
+    },
+    "description": {
+        "en": "Give Homey the ability to log your power usage",
+        "nl": "Laat Homey je energie verbuik monitoren"
+    },
+    "author": {
+        "name": "Dennie de Groot",
+        "email": "mail@denniedegroot.nl",
+        "website": "https://denniedegroot.nl"
+    },
+    "images": {
+        "large": "./assets/images/large.jpg",
+        "small": "./assets/images/small.jpg"
+    },
+    "drivers": [
+        {
+            "id": "p1",
+            "name": {
+                "en": "P1 meter",
+                "nl": "P1 meter"
+            },
+            "images": {
+                "large": "./drivers/p1/assets/images/large.jpg",
+                "small": "./drivers/p1/assets/images/small.jpg"
+            },
+            "class": "sensor",
+            "capabilities": [
+                "measure_power",
+                "meter_power",
+                "meter_gas"
+            ],
+            "pair": [
+                {
+                    "id": "start"
+                },
+                {
+                    "id": "list_devices",
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_devices"
+                    }
+                },
+                {
+                    "id": "add_devices",
+                    "template": "add_devices"
+                }
+            ],
+            "settings": [
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "General settings"
+                    },
+                    "children": [
+                        {
+                            "id": "id",
+                            "type": "text",
+                            "label": {
+                                "en": "ID",
+                                "nl": "ID"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "id": "ip",
+                            "type": "text",
+                            "label": {
+                                "en": "IP address",
+                                "nl": "IP address"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "id": "apikey",
+                            "type": "text",
+                            "label": {
+                                "en": "API key",
+                                "nl": "API code"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "id": "interval",
+                            "type": "number",
+                            "label": {
+                                "en": "Refresh interval",
+                                "nl": "Ophaal interval"
+                            },
+                            "value": 10,
+                            "attr": {
+                                "min": 1,
+                                "max": 60
+                            }
+                        },
+                        {
+                            "id": "type",
+                            "type": "dropdown",
+                            "value": "dsmr2",
+                            "label": {
+                                "en": "Type",
+                                "nl": "Type"
+                            },
+                            "values": [
+                                {
+                                    "id": "dsmr2",
+                                    "label": {
+                                        "en": "DSMR 2",
+                                        "nl": "DSMR 2"
+                                    }
+                                },
+                                {
+                                    "id": "dsmr4",
+                                    "label": {
+                                        "en": "DSMR 4",
+                                        "nl": "DSMR 4"
+                                    }
+                                },
+                                {
+                                    "id": "other",
+                                    "label": {
+                                        "en": "Other",
+                                        "nl": "Other"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "pulse",
+            "name": {
+                "en": "Pulse meter",
+                "nl": "Puls meter"
+            },
+            "images": {
+                "large": "./drivers/pulse/assets/images/large.jpg",
+                "small": "./drivers/pulse/assets/images/small.jpg"
+            },
+            "class": "sensor",
+            "capabilities": [
+                "measure_power",
+                "meter_power"
+            ],
+            "pair": [
+                {
+                    "id": "start"
+                },
+                {
+                    "id": "list_devices",
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_devices"
+                    }
+                },
+                {
+                    "id": "add_devices",
+                    "template": "add_devices"
+                }
+            ],
+            "settings": [
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "General settings"
+                    },
+                    "children": [
+                        {
+                            "id": "id",
+                            "type": "text",
+                            "label": {
+                                "en": "ID",
+                                "nl": "ID"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "id": "ip",
+                            "type": "text",
+                            "label": {
+                                "en": "IP address",
+                                "nl": "IP address"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "id": "apikey",
+                            "type": "text",
+                            "label": {
+                                "en": "API key",
+                                "nl": "API code"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "id": "pulses",
+                            "type": "number",
+                            "label": {
+                                "en": "Pulses per kWh",
+                                "nl": "Pulses per kWh"
+                            },
+                            "value": 100,
+                            "attr": {
+                                "min": 1,
+                                "max": 10000
+                            }
+                        },
+                        {
+                            "id": "debounce",
+                            "type": "number",
+                            "label": {
+                                "en": "Debounce (ms)",
+                                "nl": "Debounce (ms)"
+                            },
+                            "value": 10,
+                            "attr": {
+                                "min": 1,
+                                "max": 100
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

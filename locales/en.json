@@ -1,0 +1,17 @@
+{
+    "pair": {
+        "title": "Select the devices you want to add"
+    },
+    "settings": {
+        "title": "Wireless Energy Monitor settings",
+        "intro": "Before you can adjust device settings you need to add a WEM device. Read the manual for instructions.",
+        "header": "WEM settings",
+        "pair": {
+            "header": "Pair P1 to pulse meters",
+            "intro": "",
+            "p1meter": "P1 meter",
+            "pulsemeter": "Pulse meter",
+            "save": "Save settings"
+        }
+    }
+}

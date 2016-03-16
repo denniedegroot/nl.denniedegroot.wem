@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            .form-label {
+                display: block !important;
+                margin-right: 20px;
+                margin-bottom: 10px;
+            }
+        </style>
+        <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+    </head>
+    <body>
+
+    <h1 data-i18n="settings.title"></h1>
+    <p data-i18n="settings.intro"></p>
+
+    <h2 data-i18n="settings.pair.header"></h2>
+    <p data-i18n="settings.pair.intro"></p>
+
+    <div id="paired-meters">
+    </div>
+
+    <button id="settings-pair-save-button" data-i18n="settings.pair.save" onclick="onPairMetersSave()"></button>
+
+    <script type="text/javascript">
+        var paired_meters = {};
+
+        var p1_devices = {};
+        var pulse_devices = {};
+
+        function onPairMetersSave() {
+            var paired_meters = {};
+
+            $.each(p1_devices, function (index, p1_device) {
+                $.each(pulse_devices, function (index, pulse_device) {
+                    if (document.getElementById(p1_device.id + '-' + pulse_device.id).checked)
+                        if (paired_meters[p1_device.id] instanceof Array) {
+                            paired_meters[p1_device.id].push(pulse_device.id);
+                        } else {
+                            paired_meters[p1_device.id] = [pulse_device.id];
+                        }
+                });
+            });
+
+            Homey.set('paired_meters', paired_meters, function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        function selectPairedMeters() {
+            $.each(paired_meters, function (index, meter) {
+                meter.forEach(function (entry) {
+                    if (document.getElementById(index + '-' + entry)) {
+                        document.getElementById(index + '-' + entry).checked = true;
+                    }
+                });
+            });
+        }
+
+        function createEntries(callback) {
+            var html = '';
+
+            $.each(p1_devices, function (index, p1_device) {
+                html += '<fieldset> \
+                            <legend>' + __('settings.pair.p1meter') + ': ' + (p1_device.id).slice(0, -3) + '</legend>';
+
+                $.each(pulse_devices, function (index, pulse_device) {
+                    html += '<div class="field"> \
+                                <input id="' + p1_device.id + '-' + pulse_device.id + '" type="checkbox" /> \
+                                <label for="' + p1_device.id + '-' + pulse_device.id + '">' + __('settings.pair.pulsemeter') + ': ' + (pulse_device.id).slice(0, -3) + '</label> \
+                            </div>';
+                });
+
+                html += '</fieldset>';
+            });
+
+            document.getElementById('paired-meters').innerHTML = html;
+
+            selectPairedMeters();
+
+            callback();
+        }
+
+        function onHomeyReady() {
+            Homey.on('paired_meters_changed', function (data) {
+                paired_meters = data;
+
+                if (paired_meters == undefined) {
+                    paired_meters = {};
+                } else {
+                    selectPairedMeters();
+                }
+            });
+
+            Homey.get('paired_meters', function (err, data) {
+                paired_meters = data;
+
+                if (paired_meters == undefined) {
+                    paired_meters = {};
+                }
+
+                Homey.api('GET', '/p1_devices', function(err, devices) {
+                    if (err) {
+                        return console.error(err);
+                    }
+
+                    p1_devices = devices;
+
+                    Homey.api('GET', '/pulse_devices', function(err, devices) {
+                        if (err) {
+                            return console.error(err);
+                        }
+
+                        pulse_devices = devices;
+                        createEntries(function() {
+                            Homey.ready();
+                        });
+                    });
+                });
+            });
+        }
+    </script>
+    </body>
+</html>

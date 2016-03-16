@@ -1,0 +1,45 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true,
+        "jquery": true
+    } ,
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [2, 4],
+        "brace-style": 1,
+        "comma-spacing": [1, {"before": false, "after": true}],
+        "comma-style": [1, "last"],
+        "linebreak-style": [2, "unix"],
+        "quotes": [2, "single"],
+        "semi": [2, "always"],
+        "curly": 2,
+        "eol-last": 1,
+        "one-var": [2, "never"],
+        "space-in-parens": [1, "never"],
+        "space-before-blocks": [1, "always"],
+        "space-infix-ops": [1, {"int32Hint": false}],
+        "space-before-function-paren": [1, {"anonymous": "always", "named": "never"}],
+        "spaced-comment": [1, "always"],
+        "keyword-spacing": [2, {"before": true, "after": true, "overrides": {}}],
+        "newline-after-var": [2, "always"],
+        "no-console": [0],
+        "no-inline-comments": 1,
+        "no-multiple-empty-lines": [1, {"max": 1}],
+        "no-mixed-spaces-and-tabs": 1,
+        "no-trailing-spaces": 1,
+        "no-spaced-func": 1,
+        "no-multi-spaces": 2,
+        "no-unused-vars": 1,
+        "callback-return": [2, ["callback", "cb", "next"]]
+    },
+    "globals": {
+        "__": true,
+        "Homey": true
+    }
+}
