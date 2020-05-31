@@ -1,7 +1,8 @@
 {
     "id": "nl.denniedegroot.wem",
-    "version": "1.0.0",
-    "compatibility": "0.x || 1.x",
+    "version": "2.0.0",
+    "compatibility": ">=4.0.0",
+    "sdk": 2,
     "category": "appliances",
     "name": {
         "en": "Wireless Energy Monitor",
@@ -37,6 +38,9 @@
                 "meter_power",
                 "meter_gas"
             ],
+            "energy": {
+                "cumulative": true
+            },
             "pair": [
                 {
                     "id": "start"
@@ -62,7 +66,7 @@
                     "children": [
                         {
                             "id": "id",
-                            "type": "text",
+                            "type": "label",
                             "label": {
                                 "en": "ID",
                                 "nl": "ID"
@@ -71,7 +75,7 @@
                         },
                         {
                             "id": "ip",
-                            "type": "text",
+                            "type": "label",
                             "label": {
                                 "en": "IP address",
                                 "nl": "IP address"
@@ -80,7 +84,7 @@
                         },
                         {
                             "id": "apikey",
-                            "type": "text",
+                            "type": "label",
                             "label": {
                                 "en": "API key",
                                 "nl": "API code"
@@ -176,7 +180,7 @@
                     "children": [
                         {
                             "id": "id",
-                            "type": "text",
+                            "type": "label",
                             "label": {
                                 "en": "ID",
                                 "nl": "ID"
@@ -185,7 +189,7 @@
                         },
                         {
                             "id": "ip",
-                            "type": "text",
+                            "type": "label",
                             "label": {
                                 "en": "IP address",
                                 "nl": "IP address"
@@ -194,7 +198,7 @@
                         },
                         {
                             "id": "apikey",
-                            "type": "text",
+                            "type": "label",
                             "label": {
                                 "en": "API key",
                                 "nl": "API code"
